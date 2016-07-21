@@ -62,6 +62,27 @@ paths:
           schema:
             $ref: '#/definitions/movie'
 
+  /movies/searchOmbd:
+    get:
+      tags:
+        - movies
+      summary: get movie by id
+      x-swagger-router-controller: movies.search
+      parameters:
+        - name: title
+          in: query
+          required: false
+          type: string
+        - name: year
+          in: query
+          required: false
+          type: string
+
+      responses:
+        '200':
+          description: movie
+          schema:
+            $ref: '#/definitions/movie'
 
 definitions:
   movie:

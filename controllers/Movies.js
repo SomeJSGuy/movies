@@ -9,7 +9,7 @@ function Movies(main) {
     fdebug("init.");
     return {
 
-        'search': (req, res, next)=>{
+        'search': (req, res, next) => {
             fdebug(".search called");
 
             var title  = req.swagger.params.title ? req.swagger.params.title.value : null;
@@ -19,7 +19,8 @@ function Movies(main) {
             main.libs.Movies.search({title: title, year: year, id: id})
             .then((movies) => {
                     if (movies.length === 0) {
-                        Movies.searchOmbd(req, res, next).then((movies2) => {
+                        main.libs.Movies.searchOmbd(req, res, next).then((movies2) => {
+                            console.log('movies2: ', movies2);
                             res.json(movies2);
                         });
                     }
